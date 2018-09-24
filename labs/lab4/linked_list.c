@@ -215,8 +215,9 @@ node* remove_any(node* head,node* nd)
 void display(node* n)
 {
     if(n != NULL)
-        printf("%d ", n->data);
+        printf("id:%d  %s attacked %s with %d victums.\n",n->data->id, n->data->name, n->data->location, n->data->nVictims);
 }
+
  
 /*
     Search for a specific node with input data
@@ -242,7 +243,7 @@ node* search(node* head,int data)
 /*
     remove all element of the list
 */
-void clear(node *head)
+void clears(node *head)
 {
     node *cursor, *tmp;
  

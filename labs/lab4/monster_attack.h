@@ -8,4 +8,6 @@ struct monsterAttk {
     int nVictims;
 };
 
+struct monsterAttk* createM();
+
 #endif

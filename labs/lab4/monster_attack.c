@@ -1,40 +1,42 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "monster_attack.h" 
+int id = 1;
 
-
-void inputMonsterAttk(struct monsterAttk *attks, int n){
-    struct monsterAttk *curr_attk;
-    
-    for(int i = 0; i < n; i++)
+struct monsterAttk* createM(){
+     struct monsterAttk *attk = (struct monsterAttk *) malloc(sizeof(struct monsterAttk));
+    if(attk == NULL)
     {
-        curr_attk= attks + i;
-        curr_attk->id = i+1;
-        printf("Enter name of the monster %d:", i+1);
-        scanf("%15s", curr_attk -> name);
-        printf("Enter location of Attack:");
-        scanf("%30s", curr_attk -> location);
-        printf("Number of victums:");
-        scanf("%d", &curr_attk -> nVictims);
+        printf("Error creating a new node.\n");
+        exit(0);
     }
-}
 
-void printAttks(struct monsterAttk *attks, int n){
+    attk->id= id++;
+    printf("Enter Monster Name:  ");
     
-    for(int i = 0; i < n; i++)
+    for(int i = 0; i < 2; i++)
     {
-        printf("%s attacked %s with %d victums.\n", (attks+i)->name, (attks+i)->location, (attks+i)->nVictims);
-    }
-    
-}
-
-void totalVictums(struct monsterAttk *attks, int n){
-    int tVictims = 0;
-
-    for(int i = 0; i < n; i++)
+        fgets(attk->name, 30,stdin);
+    }    
+    printf("Enter Monster Attack location:  ");
+    for(int i = 0; i < 1; i++)
     {
-        tVictims += (attks+i)->nVictims;
+        fgets(attk->location, 30,stdin);
     }
+    printf("Enter number of victum(s):  ");
+    scanf("%d", &attk->nVictims); 
+
+    return attk;
+};
+
+// void totalVictums(struct monsterAttk *attks, int n){
+//     int tVictims = 0;
+
+//     for(int i = 0; i < n; i++)
+//     {
+//         tVictims += (attks+i)->nVictims;
+//     }
     
-    printf("Total victims from all attacks: %d \n" ,tVictims);
-}
+//     printf("Total victims from all attacks: %d \n" ,tVictims);
+// }

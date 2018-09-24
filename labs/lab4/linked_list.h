@@ -53,13 +53,14 @@ node* remove_any(node* head,node* nd);
 */
 void display(node* n);
 
+
 //pass the id to search
 node* search(node* head,int data);
 
 /*
     remove all element of the list
 */
-void clear(node *head);
+void clears(node *head);
 /*
     return the number of elements in the list
 */

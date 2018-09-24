@@ -24,14 +24,10 @@ int main()
 {
     int command;
     int id;
-    char mname [30];
-    char mlocation [30];
-    int mvictums;
  
-    struct monsterAttk* data= NULL;
     node* head = NULL;
     node* tmp = NULL;
-    
+    struct monsterAttk* data = NULL;    
     do {
 		show_menu();
         printf("\nEnter a command(0-10,0 to quit): ");
@@ -41,23 +37,13 @@ int main()
         case 1:
 
             printf("ready to prepend...\n");
-            printf("Enter Monster Name with no space:  ");
-            scanf("%30s", mname);  
-            printf("Enter Monster Attack location with no space:  ");
-            scanf("%30s", mlocation); 
-            printf("Enter number of victums:  ");
-            scanf("%d", &mvictums); 
-            
-            strcpy(data->name, mname);
-            strcpy(data->location, mlocation);
-            data->nVictims=mvictums;
-            
+            data=createM();
             head = prepend(head,data);
             traverse(head);
             break;
         case 2:
-            printf("Please enter a Monster Attack to append: ");
-            // scanf("%d",&data);
+            printf("ready to append...\n");
+            data=createM();
             head = append(head,data);
             traverse(head);
             break;
@@ -67,7 +53,9 @@ int main()
             tmp = search(head,id);
             if(tmp != NULL)
             {
-                printf("Element with id %d found.",id);
+                printf("Element with id %d found.\n",id);
+                display(tmp);
+               
             }
             else
             {
@@ -75,13 +63,13 @@ int main()
             }
             break;
         case 4:
-            printf("Enter the element id after which you would like to insert the new Monster Attack: ");
+            printf("Enter the id after which you would like to insert the new Monster Attack: ");
             scanf("%d",&id);
             tmp = search(head,id);
             if(tmp != NULL)
             {
 
-                printf("Enter the monster Name: ");
+                data=createM();
                 head = insert_after(head,data,tmp);
                 if(head != NULL)
                     traverse(head);
@@ -92,13 +80,12 @@ int main()
             }
             break;
         case 5:
-            printf("Enter the element id before which you would like to insert a new Monster Attack: ");
+            printf("Enter the id before which you would like to insert a new Monster Attack: ");
             scanf("%d",&id);
             tmp = search(head,id);
             if(tmp != NULL)
             {
-                printf("Enter the value to insert: ");
-                // scanf("%d",&data);
+                data=createM();
                 head = insert_before(head,data,tmp);
  
                 if(head != NULL)
@@ -120,7 +107,7 @@ int main()
                 traverse(head);
             break;
         case 8:
-            printf("Enter the element value to remove: ");
+            printf("Enter the element id to remove: ");
             scanf("%d",&id);
             tmp = search(head,id);
             if(tmp != NULL)
@@ -147,7 +134,7 @@ int main()
         }
  
     } while(command != 0);
-    clear(head);
+    clears(head);
     return 0;
 }
 
