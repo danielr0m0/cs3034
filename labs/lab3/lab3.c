@@ -31,15 +31,13 @@ int main()
 
 void inputMonsterAttk(struct monsterAttk *attks, int n){
     struct monsterAttk *curr_attk;
-    char temp;
-    
+
     for(int i = 0; i < n; i++)
     {
         curr_attk= attks + i;
         curr_attk->id = i+1;
         printf("Enter name of the monster %d:", i+1);
-        scanf("%c", temp);
-        printf("%s", temp);
+        scanf("%15s",curr_attk->name);
         printf("Enter location of Attack:");
         scanf("%30s", curr_attk -> location);
         printf("Number of victums:");

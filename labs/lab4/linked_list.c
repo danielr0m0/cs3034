@@ -11,7 +11,7 @@
  
     return the newly created node
 */
-node* create(struct monsterAttk data,node* next)
+node* create(struct monsterAttk* data,node* next)
 {
     node* new_node = (node*)malloc(sizeof(node));
     if(new_node == NULL)
@@ -28,7 +28,7 @@ node* create(struct monsterAttk data,node* next)
 /*
     add a new node at the beginning of the list
 */
-node* prepend(node* head,struct monsterAttk data)
+node* prepend(node* head,struct monsterAttk* data)
 {
     node* new_node = create(data,head);
     head = new_node;
@@ -38,7 +38,7 @@ node* prepend(node* head,struct monsterAttk data)
 /*
     add a new node at the end of the list
 */
-node* append(node* head, struct monsterAttk data)
+node* append(node* head, struct monsterAttk* data)
 {
 	if(head == NULL) head = create(data, head);
 	else {
@@ -57,7 +57,7 @@ node* append(node* head, struct monsterAttk data)
 /*
     insert a new node after the prev node
 */
-node* insert_after(node *head, struct monsterAttk data, node* prev)
+node* insert_after(node *head, struct monsterAttk* data, node* prev)
 {
     if(head == NULL || prev == NULL)
         return NULL;
@@ -81,7 +81,7 @@ node* insert_after(node *head, struct monsterAttk data, node* prev)
 /*
     insert a new node before the nxt node
 */
-node* insert_before(node *head, struct monsterAttk data, node* nxt)
+node* insert_before(node *head, struct monsterAttk* data, node* nxt)
 {
     if(nxt == NULL || head == NULL)
         return NULL;
@@ -232,7 +232,7 @@ node* search(node* head,int data)
     node *cursor = head;
     while(cursor!=NULL)
     {
-        if(cursor->data.id == data)
+        if(cursor->data->id == data)
             return cursor;
         cursor = cursor->next;
     }
@@ -288,10 +288,10 @@ node* insertion_sort(node* head)
         x = x->next;
         if (head != NULL)
         {
-            if(e->data.id > head->data.id)
+            if(e->data->id > head->data->id)
             {
                 y = head;
-                while ((y->next != NULL) && (e->data.id > y->next->data.id))
+                while ((y->next != NULL) && (e->data->id > y->next->data->id))
                 {
                     y = y->next;
                 }
