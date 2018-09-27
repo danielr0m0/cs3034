@@ -10,4 +10,6 @@ typedef struct monsterAttk {
 
 struct monsterAttk* createM();
 
+void printM(void* data);
+
 #endif

@@ -9,4 +9,6 @@ typedef struct pokemon {
 
 struct pokemon* createP();
 
+void printP(void* data);
+
 #endif

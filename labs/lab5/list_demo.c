@@ -25,27 +25,36 @@ int main()
 {
     int command;
     int id;
- 
+
     node* head = NULL;
     node* tmp = NULL;
     void* data = NULL;
 
     char input[15];
     void* (*create)();
-    void* (*display)();
+    void (*print)();
 
-    printf("which type would u like to use 1) monster_attk 2) pokemon");
-    fgets(input,15,stdin);
-    if(strcmp(input, "monster_attk")==0){
-        create=createM;
-        display= displayM;
-        change(1);
-    }else
-        create=createP;
-        display=displayP;
-        change(2);
-    do {
-		show_menu();
+    while(1){
+        printf("which type would u like to use 1) monster_attk 2) pokemon\n");
+    
+           scanf("%15s",input);
+        if(strcmp(input, "monster_attk")==0 || strcmp(input, "1")==0 ){
+            puts("You chose monster_attak\n\n");
+            create=createM;
+            print = printM;
+            break;
+        }else if(strcmp(input, "pokemon")==0 || strcmp(input, "2")==0 ) {
+             puts("You chose pokemon\n\n");
+            create=createP;
+            print= printP;
+            break;
+        }
+        puts("error please try number value.... \n\n\n");
+    }
+   
+
+    do {    
+        show_menu();
         printf("\nEnter a command(0-10,0 to quit): ");
         scanf("%d",&command);
         switch(command)
@@ -55,13 +64,13 @@ int main()
             printf("ready to prepend...\n");
             data=create();
             head = prepend(head,data);
-            traverse(head);
+            traverse(head,print);
             break;
         case 2:
             printf("ready to append...\n");
             data=create();
             head = append(head,data);
-            traverse(head);
+            traverse(head,print);
             break;
         case 3:
             printf("Please enter a id to search: ");
@@ -70,7 +79,7 @@ int main()
             if(tmp != NULL)
             {
                 printf("Element with id %d found.\n",id);
-                display(tmp);
+                // display(tmp);
                
             }
             else
@@ -88,7 +97,7 @@ int main()
                 data=create();
                 head = insert_after(head,data,tmp);
                 if(head != NULL)
-                    traverse(head);
+                    traverse(head,print);
             }
             else
             {
@@ -105,7 +114,7 @@ int main()
                 head = insert_before(head,data,tmp);
  
                 if(head != NULL)
-                    traverse(head);
+                    traverse(head,print);
             }
             else
             {
@@ -115,12 +124,12 @@ int main()
         case 6:
             head = remove_front(head);
             if(head != NULL)
-                traverse(head);
+                traverse(head,print);
             break;
         case 7:
             head = remove_back(head);
             if(head != NULL)
-                traverse(head);
+                traverse(head,print);
             break;
         case 8:
             printf("Enter the element id to remove: ");
@@ -130,22 +139,22 @@ int main()
             {
                 remove_any(head,tmp);
                 if(head != NULL)
-                    traverse(head);
+                    traverse(head,print);
             }
             else
             {
-                printf("Element with value %d not found.",getId(data));
+                printf("Element with value %d not found.",id);
             }
             break;
         case 9:
             head = insertion_sort(head);
             if(head != NULL)
-                traverse(head);
+                traverse(head,print);
             break;
         case 10:
             head = reverse(head);
             if(head != NULL)
-                traverse(head);
+                traverse(head,print);
             break;
         }
  

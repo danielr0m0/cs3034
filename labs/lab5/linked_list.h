@@ -1,13 +1,16 @@
 #ifndef LINKED_LIST
 #define LINKED_LIST
-
+typedef struct object {
+    int id;
+}object;
 typedef struct node
 { 
     void* data;
     struct node* next;
 } node;
- 
- 
+
+
+void (*print)(void* data);
 /*
     create a new node
     initialize the data and next field
@@ -35,7 +38,7 @@ node* insert_before(node *head, void* data, node* nxt);
 /*
     traverse the linked list
 */
-void traverse(node* head);
+void traverse(node* head, void (*print)(void *));
 /*
     remove node from the front of list
 */
@@ -51,17 +54,13 @@ node* remove_any(node* head,node* nd);
 /*
     display a node
 */
-void displayM(node* n);
-
-void displayP(node* n);
-
-void change(int c);
-
-int getId(void* data);
+void display(node *n, void (*print)(void *));
 
 
 //pass the id to search
 node* search(node* head,int data);
+
+int getid(void* data);
 
 /*
     remove all element of the list

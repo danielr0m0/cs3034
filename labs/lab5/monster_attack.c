@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "monster_attack.h" 
-int id = 1;
+int mId = 1;
 
 struct monsterAttk* createM(){
      struct monsterAttk *attk = (struct monsterAttk *) malloc(sizeof(struct monsterAttk));
@@ -12,7 +12,7 @@ struct monsterAttk* createM(){
         exit(0);
     }
 
-    attk->id= id++;
+    attk->id= mId++;
     printf("Enter Monster Name:  ");
     
     for(int i = 0; i < 2; i++)
@@ -29,6 +29,15 @@ struct monsterAttk* createM(){
 
     return attk;
 };
+
+void printM(void* data){
+    if(data !=NULL){
+        monsterAttk *attk = (monsterAttk *) data;
+         printf("id:%d  %s attacked %s with %d victums.\n",attk->id, attk->name, attk->location, attk->nVictims);
+    }
+    else
+        printf("null");
+}
 
 // void totalVictums(struct monsterAttk *attks, int n){
 //     int tVictims = 0;

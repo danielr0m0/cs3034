@@ -10,20 +10,6 @@
  
     return the newly created node
 */
-void* (*display)();
-
-void change(int c){
-    
-    if (c==1) 
-        display=&displayM;
-    else
-        display=displayP;
-    
-}
-
-int getId(void* data){
-    return data->id;
-}
 
 node* create(void* data,node* next)
 {
@@ -130,12 +116,12 @@ node* insert_before(node *head, void* data, node* nxt)
 /*
     traverse the linked list
 */
-void traverse(node* head)
+void traverse(node* head, void (*print)(void *))
 {
     node* cursor = head;
     while(cursor != NULL)
     {
-        display(cursor);
+        display(cursor, print);
         cursor = cursor->next;
     }
     printf("\n");
@@ -226,18 +212,11 @@ node* remove_any(node* head,node* nd)
 /*
     display a node
 */
-void displayM(node* n)
-{
-    if(n != NULL)
-        printf("id:%d  %s attacked %s with %d victums.\n",n->data->id, n->data->name, n->data->location, n->data->nVictims);
+void display(node *n, void (*print)(void *)) { 
+    if (n != NULL) { 
+        print(n->data);
+    }
 }
-
-void displayP(node* n)
-{
-    if(n != NULL)
-        printf("id:%d  %s lv %d .\n",n->data->id, n->data->name, n->data->level);
-}
-
  
 /*
     Search for a specific node with input data
@@ -253,7 +232,8 @@ node* search(node* head,int data)
     node *cursor = head;
     while(cursor!=NULL)
     {
-        if(cursor->data->id == data)
+        object *obj = (object *)  cursor->data;
+        if(obj->id == data)
             return cursor;
         cursor = cursor->next;
     }
@@ -309,10 +289,10 @@ node* insertion_sort(node* head)
         x = x->next;
         if (head != NULL)
         {
-            if(e->data->id > head->data->id)
+            if(((object*) e->data)->id > ((object*)head->data)->id)
             {
                 y = head;
-                while ((y->next != NULL) && (e->data->id > y->next->data->id))
+                while ((y->next != NULL) && (((object *)e->data)->id > ((object*)y->next->data)->id))
                 {
                     y = y->next;
                 }
@@ -351,4 +331,8 @@ node* reverse(node* head)
     }
     head = prev;
     return head;
+}
+
+int getid(void* data){
+    return ((object *)data) ->id;
 }
