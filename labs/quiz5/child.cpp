@@ -6,11 +6,11 @@ Child::Child(){};
 
 void Child::recite(){
     cout << "I do not like green eggs and ham. \n"<<
-            "I will not eat them, Sam I Am,"<<endl;
+            "I will not eat them, Sam I Am."<<endl;
         
         for(int i = 0; i < (int) strings.size(); i++)
         {
-            cout<<Child::strings[i]<<endl;
+            cout<<"I would not eat them "<<Child::strings[i]<<endl;
         }
         
         
