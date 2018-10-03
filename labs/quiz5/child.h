@@ -13,6 +13,6 @@ class Child{
     private:
         vector<string> strings;
 
-}
+};
 
 #endif
