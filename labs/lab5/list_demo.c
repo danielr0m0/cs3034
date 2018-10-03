@@ -79,7 +79,7 @@ int main()
             if(tmp != NULL)
             {
                 printf("Element with id %d found.\n",id);
-                // display(tmp);
+                 display(tmp,print);
                
             }
             else
