@@ -17,7 +17,7 @@ void Child::recite(){
 };
 
 void Child::askPlace(){
-    cout<<"please describe a situation in which s/he thinks the child might eat green eggs and ham." <<endl;
+    cout<<"In what circumstances do you think I might eat Green Eggs and Ham?" ;
     string input;
     getline(cin,input);
     strings.push_back(input);
