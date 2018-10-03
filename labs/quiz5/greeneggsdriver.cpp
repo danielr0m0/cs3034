@@ -8,8 +8,14 @@ int main()
 {
     Child child;
 
-    child.askPlace();
-    child.recite();
+    int repeat =6;
+    for(int i = 0; i < repeat; i++)
+    {
+        child.askPlace();
+        child.recite();
+    }
+    
+    
 
     return 0;
 }
