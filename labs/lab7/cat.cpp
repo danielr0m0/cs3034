@@ -13,6 +13,6 @@ void Cat::predate(Prey &prey){
 }
 
 ostream &operator << (ostream &output, const Cat &cat){
-    output << cat.name << "is a cat weighing "<< cat.weight << " grams";
+    output << cat.name << " is a cat weighing "<< cat.weight << " grams";
     return output;
 }
